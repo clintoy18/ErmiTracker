@@ -24,9 +24,10 @@ export default function App() {
       <Routes>
         <Route element={<AppShell />}>
           <Route path="/login" element={<Login />} />
-          <Route path="/public" element={<PublicView />} />
+          <Route path="/" element={<PublicView />} />
+          <Route path="/public" element={<Navigate to="/" replace />} />
           <Route
-            path="/"
+            path="/dashboard"
             element={
               <ProtectedRoute>
                 <Dashboard />

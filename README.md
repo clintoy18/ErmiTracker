@@ -122,7 +122,7 @@ created_at timestamptz
 
 - Admin users can see all organizations, filter by organization, and approve pending donations and distributions.
 - Organization users can register, sign in, create donations and distributions, and only see their own records.
-- Public users can open `/public` without logging in.
+- Public users land on `/` without logging in.
 - Public donations show only `approved` donations.
 - Public distributions show only `approved` distributions.
 - Inventory is computed dynamically from donations minus distributions, both overall and per organization.

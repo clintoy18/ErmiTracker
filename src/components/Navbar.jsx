@@ -4,11 +4,14 @@ import { useAuth } from "../context/AuthContext";
 export default function Navbar() {
   const { user, logout, displayName, organizationName, role } = useAuth();
   const navLinks = [
-    { to: "/", label: role === "admin" ? "Admin Dashboard" : "Organization Dashboard" },
+    { to: "/", label: "Public View" },
+    {
+      to: "/dashboard",
+      label: role === "admin" ? "Admin Dashboard" : "Organization Dashboard",
+    },
     { to: "/donations/add", label: "Log Activity" },
     { to: "/donations", label: "Donations" },
     { to: "/distributions", label: "Distributions" },
-    { to: "/public", label: "Public View" },
   ];
 
   return (
