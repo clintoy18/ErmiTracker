@@ -174,7 +174,7 @@ export default function DonationsList() {
           subtitle="Organization donations stay pending until an admin approves them."
         >
           <p className="text-sm text-slate-500">
-            Pending donations will appear on the public page after admin approval.
+            Pending donations affect your internal records immediately, but they appear on the public page only after admin approval.
           </p>
         </SectionCard>
       )}

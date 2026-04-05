@@ -73,8 +73,7 @@ npm install
 
 - Enable Email/Password in Authentication
 - Run [supabase-schema.sql](/C:/Users/Juliet/DonationTracker/supabase-schema.sql) in the SQL editor
-- Create at least one admin user in `auth.users`
-- Update that admin row in `public.users` so `role = 'admin'`
+- The first registered user becomes admin automatically
 
 4. Start the app:
 
@@ -103,7 +102,7 @@ organization_id uuid
 item_name text
 quantity numeric
 type donation_type -- 'cash' | 'goods'
-status donation_status -- 'pending' | 'approved'
+status record_status -- 'pending' | 'approved'
 created_at timestamptz
 ```
 
@@ -115,16 +114,17 @@ organization_id uuid
 item_name text
 quantity numeric
 location text
+status record_status -- 'pending' | 'approved'
 created_at timestamptz
 ```
 
 ## Behavior
 
-- Admin users can see all organizations, filter by organization, and approve pending donations.
+- Admin users can see all organizations, filter by organization, and approve pending donations and distributions.
 - Organization users can register, sign in, create donations and distributions, and only see their own records.
 - Public users can open `/public` without logging in.
 - Public donations show only `approved` donations.
-- Distributions are public once recorded because the provided schema has no distribution approval column.
+- Public distributions show only `approved` distributions.
 - Inventory is computed dynamically from donations minus distributions, both overall and per organization.
 - Records without a related organization name default to `"Barangay"` for backward compatibility.
 
@@ -140,9 +140,11 @@ Any insert/update triggers a refetch so dashboards, lists, and the public page s
 
 ## Approval Flow
 
+- The first registered user is promoted to `admin` automatically by the database trigger.
 - Organization-created donations are saved with `status = 'pending'`
-- Admin-created donations are saved with `status = 'approved'`
-- Admins can approve pending donations from the donations list page
+- Organization-created distributions are saved with `status = 'pending'`
+- Admin-created donations and distributions are saved with `status = 'approved'`
+- Admins can approve pending donations and distributions from their respective list pages
 
 ## Notes
 

@@ -34,7 +34,7 @@ export default function PublicView() {
       <PageHeader
         eyebrow="Transparency"
         title="Public donation report"
-        description="Residents can view all recorded organization donations and distributions without logging in."
+        description="Residents can view approved organization donations and approved distributions without logging in."
       />
 
       {donationsError || distributionsError ? (

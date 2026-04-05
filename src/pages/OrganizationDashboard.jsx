@@ -77,8 +77,11 @@ export default function OrganizationDashboard() {
         />
         <SummaryCard
           label="Pending Approvals"
-          value={donations.filter((item) => item.status === "pending").length}
-          hint="Awaiting admin review"
+          value={
+            donations.filter((item) => item.status === "pending").length +
+            distributions.filter((item) => item.status === "pending").length
+          }
+          hint="Your pending donations and distributions"
         />
       </div>
 

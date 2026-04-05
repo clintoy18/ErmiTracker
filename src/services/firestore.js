@@ -156,6 +156,7 @@ async function fetchDistributions(scope = {}) {
       item_name,
       quantity,
       location,
+      status,
       created_at,
       organization:users!distributions_organization_id_fkey (
         id,
@@ -166,6 +167,10 @@ async function fetchDistributions(scope = {}) {
 
   if (!scope.isAdmin && scope.userId) {
     request = request.eq("organization_id", scope.userId);
+  }
+
+  if (scope.publicOnly) {
+    request = request.eq("status", "approved");
   }
 
   const { data, error } = await request;
@@ -295,8 +300,20 @@ export async function addDistribution(payload) {
     item_name: payload.itemName,
     quantity: Number(payload.quantity || 0),
     location: payload.location,
+    status: payload.status || "pending",
     created_at: payload.date ? new Date(payload.date).toISOString() : new Date().toISOString(),
   });
+
+  if (error) {
+    throw error;
+  }
+}
+
+export async function updateDistributionStatus(distributionId, status) {
+  const { error } = await supabase
+    .from("distributions")
+    .update({ status })
+    .eq("id", distributionId);
 
   if (error) {
     throw error;

@@ -105,8 +105,11 @@ export default function AdminDashboard() {
         />
         <SummaryCard
           label="Pending Approvals"
-          value={donations.filter((item) => item.status === "pending").length}
-          hint="Donations waiting for admin approval"
+          value={
+            donations.filter((item) => item.status === "pending").length +
+            distributions.filter((item) => item.status === "pending").length
+          }
+          hint="Donations and distributions waiting for admin approval"
         />
       </div>
 

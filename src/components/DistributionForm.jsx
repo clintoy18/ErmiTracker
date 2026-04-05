@@ -46,6 +46,7 @@ export default function DistributionForm({ organizationOptions = [] }) {
         quantity: Number(formData.quantity || 0),
         date: formData.date,
         organizationId: isAdmin ? formData.organizationId : userOrganizationId,
+        status: isAdmin ? "approved" : "pending",
       });
 
       setFormData({
