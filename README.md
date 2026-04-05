@@ -81,6 +81,15 @@ npm install
 npm run dev
 ```
 
+## Production Routing
+
+This app uses client-side routing with React Router. Refresh-safe SPA rewrites are included for common hosts:
+
+- [vercel.json](/C:/Users/Juliet/DonationTracker/vercel.json) for Vercel
+- [netlify.toml](/C:/Users/Juliet/DonationTracker/netlify.toml) and [public/_redirects](/C:/Users/Juliet/DonationTracker/public/_redirects) for Netlify
+
+If you deploy on another host, configure all unknown routes to serve `index.html`.
+
 ## PostgreSQL Schema
 
 ### `public.users`
