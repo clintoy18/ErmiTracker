@@ -23,9 +23,20 @@ export default function Navbar() {
               ErmiTracker
             </h1>
             {user ? (
-              <p className="mt-1 text-sm text-slate-500">
-                {displayName} | {organizationName}
-              </p>
+              <div className="mt-1 flex flex-wrap items-center gap-2 text-sm text-slate-500">
+                <span>{displayName}</span>
+                <span>|</span>
+                <span>{organizationName}</span>
+                <span
+                  className={`inline-flex rounded-full px-2.5 py-1 text-xs font-semibold ${
+                    role === "admin"
+                      ? "bg-brand-100 text-brand-800"
+                      : "bg-amber-50 text-amber-700"
+                  }`}
+                >
+                  {role === "admin" ? "Admin" : "Organization"}
+                </span>
+              </div>
             ) : null}
           </div>
           {user ? (
